@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PolkaDot Cakes - Custom Cakes, Bairnsdale & East Gippsland</title>
+<meta name="description" content="Hand-crafted custom cakes, wedding cakes, cupcakes and cookies in Bairnsdale and across East Gippsland. By appointment only. Made with love by Dot." />
+<link rel="icon" type="image/png" sizes="256x256" href="Assets/favicon.png" />
+<link rel="apple-touch-icon" sizes="256x256" href="Assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Caveat:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['Fraunces', 'Georgia', 'serif'],
+          script: ['Caveat', 'cursive'],
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          cream: { 50: '#FFFCF7', 100: '#FBF7F1', 200: '#F5EFE5' },
+          blush: { 50: '#FFF4F7', 100: '#FCE3EA', 200: '#F8C4D2', 400: '#F4A6BC', 600: '#D9789A', 700: '#B0577A' },
+          mint:  { 100: '#DAF3F1', 300: '#9ADFD9', 500: '#5DC9C1', 700: '#2F8C85' },
+          peach: { 100: '#FCE5D2', 300: '#F8C49C', 500: '#F4A570', 700: '#C77A4A' },
+          ink:   { 700: '#3B3346', 900: '#1F1B2C' },
+        },
+        boxShadow: {
+          'soft': '0 12px 30px -12px rgba(217, 120, 154, 0.18), 0 6px 14px -8px rgba(31, 27, 44, 0.10)',
+          'lift': '0 24px 48px -22px rgba(217, 120, 154, 0.30), 0 10px 20px -12px rgba(31, 27, 44, 0.14)',
+          'tag':  '0 6px 18px -8px rgba(244, 165, 112, 0.55)',
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #3B3346; background: #FBF7F1; line-height: 1.7; }
+  .font-display { letter-spacing: -0.025em; }
+  h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; color: #1F1B2C; letter-spacing: -0.025em; }
+  h1 { letter-spacing: -0.035em; }
+  .script { font-family: 'Caveat', cursive; letter-spacing: 0; }
+
+  /* Polka dot background pattern - subtle blush */
+  .polka {
+    background-image: radial-gradient(circle at 1px 1px, rgba(244, 165, 188, 0.35) 1.4px, transparent 1.6px);
+    background-size: 22px 22px;
+  }
+  .polka-dense {
+    background-image: radial-gradient(circle at 1px 1px, rgba(244, 165, 188, 0.55) 1.6px, transparent 1.8px);
+    background-size: 18px 18px;
+  }
+  /* Layered radial gradients for hero */
+  .hero-bg {
+    background:
+      radial-gradient(60% 50% at 12% 18%, rgba(244, 165, 188, 0.28), transparent 70%),
+      radial-gradient(50% 45% at 92% 8%, rgba(93, 201, 193, 0.18), transparent 70%),
+      radial-gradient(45% 40% at 88% 92%, rgba(244, 165, 112, 0.20), transparent 70%),
+      linear-gradient(180deg, #FFFCF7 0%, #FBF7F1 100%);
+  }
+  /* Grain overlay using inline SVG noise */
+  .grain::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.06; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  /* Image styling */
+  .img-tilt-l { transform: rotate(-2.2deg); }
+  .img-tilt-r { transform: rotate(2.2deg); }
+  .img-fancy {
+    border-radius: 18px;
+    box-shadow: 0 30px 60px -28px rgba(31, 27, 44, 0.30), 0 12px 24px -16px rgba(217, 120, 154, 0.30);
+  }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.85rem 1.5rem; border-radius: 999px; font-weight: 600; font-size: 0.95rem; transition: transform 220ms cubic-bezier(.22,1.2,.36,1), box-shadow 220ms ease, background-color 220ms ease, color 220ms ease, border-color 220ms ease; will-change: transform; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:active { transform: translateY(0); }
+  .btn:focus-visible { outline: 2px solid #5DC9C1; outline-offset: 3px; }
+  .btn-primary { background: #1F1B2C; color: #FFFCF7; box-shadow: 0 12px 26px -12px rgba(31, 27, 44, 0.55); }
+  .btn-primary:hover { background: #3B3346; box-shadow: 0 18px 32px -14px rgba(31, 27, 44, 0.60); }
+  .btn-ghost { background: rgba(255,255,255,0.6); color: #1F1B2C; border: 1px solid rgba(31, 27, 44, 0.10); backdrop-filter: blur(6px); }
+  .btn-ghost:hover { background: #FFFFFF; border-color: rgba(31, 27, 44, 0.20); }
+
+  /* Section headings */
+  .eyebrow { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #B0577A; }
+  .eyebrow::before { content: ""; width: 26px; height: 1px; background: #F4A6BC; display: inline-block; }
+
+  /* Service card */
+  .svc-card { position: relative; background: #FFFCF7; border: 1px solid rgba(31, 27, 44, 0.06); border-radius: 22px; padding: 1.75rem; transition: transform 240ms cubic-bezier(.22,1.2,.36,1), box-shadow 240ms ease, border-color 240ms ease; }
+  .svc-card:hover { transform: translateY(-4px); border-color: rgba(244, 165, 188, 0.45); box-shadow: 0 26px 50px -28px rgba(217, 120, 154, 0.40), 0 10px 22px -14px rgba(31, 27, 44, 0.12); }
+  .svc-icon { width: 44px; height: 44px; border-radius: 14px; display: inline-flex; align-items: center; justify-content: center; }
+
+  /* Image treatment - gradient overlay for hero/contact images */
+  .img-treat { position: relative; overflow: hidden; }
+  .img-treat::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(31, 27, 44, 0.22) 100%); pointer-events: none; }
+
+  /* Underline accent */
+  .ul-script { background-image: linear-gradient(180deg, transparent 62%, rgba(244, 165, 112, 0.45) 62%, rgba(244, 165, 112, 0.45) 92%, transparent 92%); padding: 0 0.1em; }
+
+  /* Nav link */
+  .nav-link { position: relative; font-weight: 500; color: #3B3346; padding: 0.4rem 0.1rem; transition: color 200ms ease; }
+  .nav-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; background: #F4A6BC; transform: scaleX(0); transform-origin: left; transition: transform 240ms cubic-bezier(.22,1.2,.36,1); }
+  .nav-link:hover { color: #1F1B2C; }
+  .nav-link:hover::after { transform: scaleX(1); }
+  .nav-link:focus-visible { outline: 2px solid #5DC9C1; outline-offset: 3px; border-radius: 4px; }
+
+  /* Floating tag bubble */
+  .float-tag { position: absolute; background: #FFFCF7; border: 1px solid rgba(31, 27, 44, 0.06); border-radius: 999px; padding: 0.55rem 1rem; font-weight: 600; font-size: 0.85rem; color: #1F1B2C; box-shadow: 0 14px 30px -14px rgba(31, 27, 44, 0.22); display: inline-flex; align-items: center; gap: 0.5rem; }
+
+  /* Animated dot */
+  .live-dot { width: 8px; height: 8px; border-radius: 999px; background: #5DC9C1; box-shadow: 0 0 0 0 rgba(93, 201, 193, 0.5); animation: pulse 2.4s cubic-bezier(.22,1,.36,1) infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(93, 201, 193, 0.55); } 70% { box-shadow: 0 0 0 10px rgba(93, 201, 193, 0); } 100% { box-shadow: 0 0 0 0 rgba(93, 201, 193, 0); } }
+
+  /* Sticky nav (solid white) - hides on scroll down, returns on scroll up */
+  .nav-glass { background: #FFFFFF; border-bottom: 1px solid rgba(31, 27, 44, 0.08); transition: transform 320ms cubic-bezier(.22,1.2,.36,1); will-change: transform; }
+  .nav-hidden { transform: translateY(-110%); }
+
+  /* Mega menu */
+  .mega { position: relative; }
+  .nav-trigger { display: inline-flex; align-items: center; gap: 0.4rem; background: none; border: 0; cursor: pointer; font-family: inherit; font-size: inherit; }
+  .nav-caret { transition: transform 220ms cubic-bezier(.22,1.2,.36,1); }
+  .mega-panel {
+    position: absolute; top: calc(100% + 14px); left: 50%; transform: translate(-50%, 6px);
+    width: min(960px, 92vw);
+    background: #FFFFFF; border: 1px solid rgba(31, 27, 44, 0.08); border-radius: 22px;
+    box-shadow: 0 30px 60px -28px rgba(31, 27, 44, 0.28), 0 12px 24px -16px rgba(217, 120, 154, 0.20);
+    padding: 1.5rem;
+    opacity: 0; pointer-events: none; visibility: hidden;
+    transition: opacity 220ms ease, transform 240ms cubic-bezier(.22,1.2,.36,1), visibility 220ms;
+    z-index: 60;
+  }
+  .mega-panel::before {
+    content: ""; position: absolute; top: -7px; left: 50%; transform: translateX(-50%) rotate(45deg);
+    width: 14px; height: 14px; background: #FFFFFF; border-left: 1px solid rgba(31, 27, 44, 0.08); border-top: 1px solid rgba(31, 27, 44, 0.08);
+    border-top-left-radius: 3px;
+  }
+  .mega:hover .mega-panel,
+  .mega:focus-within .mega-panel {
+    opacity: 1; pointer-events: auto; visibility: visible; transform: translate(-50%, 0);
+  }
+  .mega:hover .nav-caret,
+  .mega:focus-within .nav-caret { transform: rotate(180deg); }
+  .mega-inner { display: grid; grid-template-columns: 1.6fr 1fr; gap: 1.5rem; }
+  .mega-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; }
+  .mega-tile { display: flex; gap: 0.85rem; padding: 0.85rem; border-radius: 14px; transition: background-color 200ms ease, transform 200ms cubic-bezier(.22,1.2,.36,1); align-items: flex-start; }
+  .mega-tile:hover { background: #FBF7F1; transform: translateY(-1px); }
+  .mega-tile:focus-visible { outline: 2px solid #5DC9C1; outline-offset: 2px; }
+  .mega-icon { width: 38px; height: 38px; border-radius: 11px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .mega-title { font-weight: 600; color: #1F1B2C; font-size: 0.96rem; line-height: 1.2; }
+  .mega-sub { font-size: 0.84rem; color: rgba(59, 51, 70, 0.78); line-height: 1.4; margin-top: 0.2rem; }
+  .mega-feature { background: #FBF7F1; border-radius: 16px; padding: 1rem; }
+  .mega-feature-img { width: 100%; aspect-ratio: 16/9; border-radius: 11px; overflow: hidden; }
+
+  /* Marquee strip */
+  .strip { background: #1F1B2C; color: #FCE3EA; }
+  .strip-dot { width: 6px; height: 6px; border-radius: 999px; background: #F4A6BC; flex-shrink: 0; }
+
+  /* Decorative dots in hero */
+  .deco-dot { position: absolute; border-radius: 999px; pointer-events: none; }
+
+  /* Reveal-on-load softness */
+  .lift-in { animation: liftIn 800ms cubic-bezier(.22,1.2,.36,1) both; }
+  @keyframes liftIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- Top info bar -->
+<div class="strip text-[0.78rem] tracking-wide">
+  <div class="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between gap-4 flex-wrap">
+    <div class="flex items-center gap-3">
+      <span class="strip-dot"></span>
+      <span>By appointment only - The Grange, Lucknow VIC 3875</span>
+    </div>
+    <div class="flex items-center gap-5">
+      <a href="mailto:polkadotcakes@hotmail.com" class="hover:text-blush-200 flex items-center gap-2">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        polkadotcakes@hotmail.com
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Sticky Mega Nav -->
+<header class="nav-glass sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-3.5 flex items-center justify-between gap-6">
+    <a href="#" class="flex items-center gap-3" aria-label="PolkaDot Cakes home">
+      <img src="Assets/logo.avif" alt="PolkaDot Cakes" class="h-12 w-auto" />
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-8" aria-label="Primary">
+
+      <!-- Services with mega panel -->
+      <div class="mega" data-mega>
+        <button type="button" class="nav-link nav-trigger" aria-haspopup="true" aria-expanded="false">
+          Services
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="mega-panel" role="menu">
+          <div class="mega-inner">
+            <div class="mega-grid">
+              <a href="#services" class="mega-tile" role="menuitem">
+                <span class="mega-icon bg-blush-100">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B0577A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8H4v8"/><path d="M3 13h18"/><path d="M12 13V8"/><path d="M9 8a3 3 0 1 1 6 0"/><path d="M12 5V3"/></svg>
+                </span>
+                <div>
+                  <p class="mega-title">Custom Cakes</p>
+                  <p class="mega-sub">Birthdays &amp; milestones, themed and made to order.</p>
+                </div>
+              </a>
+              <a href="#services" class="mega-tile" role="menuitem">
+                <span class="mega-icon bg-mint-100">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2F8C85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 4-2 2-2-2 2-4z"/><rect x="6" y="14" width="12" height="7" rx="1"/><rect x="8" y="9" width="8" height="5" rx="1"/></svg>
+                </span>
+                <div>
+                  <p class="mega-title">Wedding Cakes</p>
+                  <p class="mega-sub">Tiered, floral, classic or modern. Built around your day.</p>
+                </div>
+              </a>
+              <a href="#services" class="mega-tile" role="menuitem">
+                <span class="mega-icon bg-peach-100">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C77A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h12l-2 9H8l-2-9z"/><path d="M8 11a4 4 0 1 1 8 0"/><circle cx="12" cy="6" r="1.4"/></svg>
+                </span>
+                <div>
+                  <p class="mega-title">Cupcakes</p>
+                  <p class="mega-sub">Simple swirl to fun and funky. Personalised to your theme.</p>
+                </div>
+              </a>
+              <a href="#services" class="mega-tile" role="menuitem">
+                <span class="mega-icon bg-blush-100">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B0577A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="0.9"/><circle cx="14" cy="9" r="0.9"/><circle cx="13" cy="14" r="0.9"/><circle cx="9" cy="15" r="0.9"/></svg>
+                </span>
+                <div>
+                  <p class="mega-title">Cookies</p>
+                  <p class="mega-sub">Fondant, edible images, stamped and layered designs.</p>
+                </div>
+              </a>
+              <a href="#services" class="mega-tile" role="menuitem">
+                <span class="mega-icon bg-mint-100">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2F8C85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M3 11h18"/><path d="M8 7V4h8v3"/></svg>
+                </span>
+                <div>
+                  <p class="mega-title">Grazing Gift Boxes</p>
+                  <p class="mega-sub">Cookie + cupcake mixes loaded with chocolates and sweets.</p>
+                </div>
+              </a>
+              <a href="#services" class="mega-tile" role="menuitem">
+                <span class="mega-icon bg-peach-100">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C77A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg>
+                </span>
+                <div>
+                  <p class="mega-title">Corporate Solutions</p>
+                  <p class="mega-sub">Branded cakes, cupcakes and cookies for events and gifts.</p>
+                </div>
+              </a>
+            </div>
+
+            <aside class="mega-feature">
+              <div class="mega-feature-img">
+                <img src="Assets/c22c23_3a7223661aa547a0bfecaa6511eb5c95~mv2_d_4008_1466_s_2.avif" alt="Floral cake" class="w-full h-full object-cover" />
+              </div>
+              <p class="script text-2xl text-blush-700 mt-4 leading-none">Booking now</p>
+              <p class="font-display text-xl text-ink-900 mt-1 leading-tight">Spring weddings &amp; milestones</p>
+              <p class="text-sm text-ink-700/85 mt-2">Two weeks notice ideal. Quick-turnaround orders considered subject to capacity.</p>
+              <a href="#contact" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blush-700 hover:text-blush-600 transition-colors duration-200">
+                Start an enquiry
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </aside>
+          </div>
+        </div>
+      </div>
+
+      <a href="#gallery" class="nav-link">Gallery</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href="tel:0410579085" class="hidden md:inline-flex btn btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        0410 579 085
+      </a>
+      <a href="#contact" class="btn btn-primary">Enquire <span aria-hidden="true">-&gt;</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="relative hero-bg grain overflow-hidden">
+  <!-- decorative dots -->
+  <span class="deco-dot" style="top:14%; left:6%; width:14px; height:14px; background:#F4A6BC; opacity:.65"></span>
+  <span class="deco-dot" style="top:24%; left:18%; width:8px; height:8px; background:#5DC9C1; opacity:.7"></span>
+  <span class="deco-dot" style="top:62%; left:9%; width:10px; height:10px; background:#F4A570; opacity:.65"></span>
+  <span class="deco-dot" style="top:78%; left:22%; width:6px; height:6px; background:#F4A6BC; opacity:.8"></span>
+  <span class="deco-dot" style="top:18%; right:6%; width:12px; height:12px; background:#5DC9C1; opacity:.55"></span>
+  <span class="deco-dot" style="top:72%; right:14%; width:9px; height:9px; background:#F4A570; opacity:.7"></span>
+
+  <div class="max-w-7xl mx-auto px-6 pt-14 pb-24 lg:pt-20 lg:pb-28 relative">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      <div class="lg:col-span-6 lift-in">
+        <span class="eyebrow">Bairnsdale &amp; East Gippsland</span>
+        <h1 class="font-display mt-5 text-[2.6rem] sm:text-5xl lg:text-[3.9rem] leading-[1.04] text-ink-900">
+          Cakes that taste<br />
+          <span class="italic font-medium">as good as</span> they
+          <span class="ul-script">look.</span>
+        </h1>
+        <p class="script text-2xl text-blush-700 mt-4">Hi, I'm Dot.</p>
+        <p class="mt-4 text-[1.06rem] text-ink-700/90 max-w-xl">
+          Eight years of hand-crafted custom cakes, cupcakes, cookies and grazing boxes for weddings, milestone birthdays and everything in between. Made with love in Lucknow, delivered across East Gippsland.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <a href="#contact" class="btn btn-primary">Start your cake <span aria-hidden="true">-&gt;</span></a>
+          <a href="#services" class="btn btn-ghost">See what we make</a>
+        </div>
+        <div class="mt-9 flex items-center gap-6 flex-wrap text-sm text-ink-700/80">
+          <div class="flex items-center gap-2"><span class="live-dot"></span>Now booking weddings &amp; milestones</div>
+          <div class="hidden sm:block w-px h-5 bg-ink-900/15"></div>
+          <div class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="#F4A570" stroke="none"><path d="M12 2l2.39 6.96H22l-5.8 4.21 2.21 6.83L12 15.77l-6.41 4.23 2.21-6.83L2 8.96h7.61L12 2z"/></svg> Highly recommended across Gippsland</div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 relative">
+        <div class="relative">
+          <!-- Big hero image -->
+          <div class="img-fancy img-treat overflow-hidden aspect-[4/5] bg-cream-200">
+            <img src="Assets/c22c23_b69c308ac4a348b5ac238dd963409418~mv2_d_2004_2148_s_2.avif" alt="Three-tier white wedding cake with fresh roses and eucalyptus" class="w-full h-full object-cover" />
+          </div>
+          <!-- floating accent image -->
+          <div class="hidden md:block absolute -left-10 bottom-6 w-44 h-44 img-fancy img-tilt-l overflow-hidden ring-4 ring-cream-50">
+            <img src="Assets/da8dd0_c84384b5667d46ba98ac803da9b8233f~mv2.avif" alt="White cake decorated with cascading pink roses and yellow flowers" class="w-full h-full object-cover" />
+          </div>
+          <!-- floating tag: 8 yrs -->
+          <div class="float-tag" style="top: -14px; left: -18px;">
+            <span class="w-2.5 h-2.5 rounded-full bg-blush-400"></span>
+            8 years of cake artistry
+          </div>
+          <!-- floating tag: by appointment -->
+          <div class="float-tag" style="bottom: -12px; right: -10px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5DC9C1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            By appointment
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust strip -->
+<section class="relative bg-cream-50 border-y border-ink-900/5">
+  <div class="max-w-7xl mx-auto px-6 py-7 grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-8">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-blush-100 flex items-center justify-center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B0577A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      </div>
+      <div>
+        <p class="font-semibold text-ink-900 leading-tight">Made by hand</p>
+        <p class="text-sm text-ink-700/80">Every cake, start to finish</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-mint-100 flex items-center justify-center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F8C85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div>
+        <p class="font-semibold text-ink-900 leading-tight">Custom designs</p>
+        <p class="text-sm text-ink-700/80">Themed to your story</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-peach-100 flex items-center justify-center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C77A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21V12h6v9"/></svg>
+      </div>
+      <div>
+        <p class="font-semibold text-ink-900 leading-tight">Bairnsdale born</p>
+        <p class="text-sm text-ink-700/80">Serving East Gippsland</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-blush-100 flex items-center justify-center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B0577A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div>
+        <p class="font-semibold text-ink-900 leading-tight">Order ahead</p>
+        <p class="text-sm text-ink-700/80">2 weeks notice ideal</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="relative py-24 lg:py-28">
+  <div class="absolute inset-0 polka opacity-60 pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto px-6 relative">
+    <div class="max-w-2xl">
+      <span class="eyebrow">What we make</span>
+      <h2 class="font-display mt-4 text-4xl sm:text-5xl leading-[1.05]">
+        A little something <span class="italic font-medium">sweet</span> for every occasion.
+      </h2>
+      <p class="mt-5 text-lg text-ink-700/90">
+        From show-stopping wedding tiers to corporate cookies stamped with your logo, every order is custom-made and tailored to the moment you're celebrating.
+      </p>
+    </div>
+
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Custom Cakes -->
+      <article class="svc-card">
+        <div class="svc-icon bg-blush-100">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B0577A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8H4v8"/><path d="M3 13h18"/><path d="M12 13V8"/><path d="M9 8a3 3 0 1 1 6 0"/><path d="M12 5V3"/></svg>
+        </div>
+        <h3 class="mt-5 text-2xl">Custom Cakes</h3>
+        <p class="mt-3 text-ink-700/90">Crafted to match your vision for milestone birthdays and themed celebrations. The perfect centerpiece for every age, every story.</p>
+        <span class="mt-5 inline-flex items-center text-sm font-semibold text-blush-700">Birthdays &amp; milestones</span>
+      </article>
+
+      <!-- Wedding Cakes -->
+      <article class="svc-card">
+        <div class="svc-icon bg-mint-100">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2F8C85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 4-2 2-2-2 2-4z"/><rect x="6" y="14" width="12" height="7" rx="1"/><rect x="8" y="9" width="8" height="5" rx="1"/></svg>
+        </div>
+        <h3 class="mt-5 text-2xl">Wedding Cakes</h3>
+        <p class="mt-3 text-ink-700/90">Classic and elegant or modern and bold. We work with you on flavour, finish and floral detail so your cake fits the day perfectly.</p>
+        <span class="mt-5 inline-flex items-center text-sm font-semibold text-mint-700">Tiered, themed, unforgettable</span>
+      </article>
+
+      <!-- Cupcakes -->
+      <article class="svc-card">
+        <div class="svc-icon bg-peach-100">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C77A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h12l-2 9H8l-2-9z"/><path d="M8 11a4 4 0 1 1 8 0"/><circle cx="12" cy="6" r="1.4"/></svg>
+        </div>
+        <h3 class="mt-5 text-2xl">Cupcakes</h3>
+        <p class="mt-3 text-ink-700/90">From the quintessential simple swirl to fun and funky. Personalised toppers, your colour palette, and flavours that disappear fast.</p>
+        <span class="mt-5 inline-flex items-center text-sm font-semibold text-peach-700">Party favours &amp; centrepieces</span>
+      </article>
+
+      <!-- Cookies -->
+      <article class="svc-card">
+        <div class="svc-icon bg-blush-100">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B0577A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="0.9"/><circle cx="14" cy="9" r="0.9"/><circle cx="13" cy="14" r="0.9"/><circle cx="9" cy="15" r="0.9"/></svg>
+        </div>
+        <h3 class="mt-5 text-2xl">Cookies</h3>
+        <p class="mt-3 text-ink-700/90">Beautifully decorated fondant covered cookies with edible images or stamped, layered designs. Visually stunning, utterly delicious.</p>
+        <span class="mt-5 inline-flex items-center text-sm font-semibold text-blush-700">Favours, gifts, dessert tables</span>
+      </article>
+
+      <!-- Grazing Boxes -->
+      <article class="svc-card">
+        <div class="svc-icon bg-mint-100">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2F8C85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M3 11h18"/><path d="M8 7V4h8v3"/></svg>
+        </div>
+        <h3 class="mt-5 text-2xl">Grazing Gift Boxes</h3>
+        <p class="mt-3 text-ink-700/90">Mixed cookie and cupcake grazing boxes loaded with chocolates and sweets. Perfect for teachers, colleagues, and "just because" gifts.</p>
+        <span class="mt-5 inline-flex items-center text-sm font-semibold text-mint-700">Themed, gift-ready</span>
+      </article>
+
+      <!-- Corporate -->
+      <article class="svc-card">
+        <div class="svc-icon bg-peach-100">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C77A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg>
+        </div>
+        <h3 class="mt-5 text-2xl">Corporate Solutions</h3>
+        <p class="mt-3 text-ink-700/90">Branded cakes, cupcakes and cookies for events, fundraisers, awareness campaigns, client gifts and staff motivation. Your logo, our cake.</p>
+        <span class="mt-5 inline-flex items-center text-sm font-semibold text-peach-700">Events &amp; brand gifts</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Meet Dot -->
+<section id="about" class="relative py-24 lg:py-28 bg-gradient-to-b from-blush-50 to-cream-100">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <div class="lg:col-span-5 relative">
+        <div class="relative">
+          <div class="img-fancy overflow-hidden aspect-[4/5] bg-cream-200 max-w-md mx-auto">
+            <img src="Assets/da8dd0_a8aca419d1544b6ba2b7d0cff503f0cf~mv2.avif" alt="Dorothy 'Dot', founder and cake artist behind PolkaDot Cakes" class="w-full h-full object-cover" />
+          </div>
+          <!-- accent polka shape -->
+          <div class="absolute -z-10 -bottom-6 -left-6 w-40 h-40 rounded-full bg-blush-200/70 blur-2xl"></div>
+          <div class="absolute -z-10 -top-6 -right-4 w-32 h-32 rounded-full bg-mint-300/50 blur-2xl"></div>
+          <div class="float-tag" style="bottom: 18px; right: -12px;">
+            <span class="script text-xl text-blush-700 leading-none">Dot</span>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-7">
+        <span class="eyebrow">Meet the maker</span>
+        <h2 class="font-display mt-4 text-4xl sm:text-5xl leading-[1.05]">
+          My name is Dorothy. <span class="italic font-medium">Most people call me Dot.</span>
+        </h2>
+        <p class="script text-2xl text-blush-700 mt-3">- and yes, that's where the name comes from.</p>
+        <div class="mt-6 space-y-5 text-[1.05rem] text-ink-700/95 max-w-2xl">
+          <p>Eight years ago, after much encouragement from family and friends who recognised my artistic talents, I took the leap into the world of cake decorating. I'd always had a flair for the artistic but was unsure of the medium to truly express it - until cake came into my life.</p>
+          <p>What I love most about cake decorating is the unique blend of creativity and celebration it offers. Each day presents a new canvas, with every design reflecting the individuality of the occasion it celebrates.</p>
+          <p>The best part? Being part of someone's special memory and receiving a heartfelt thank-you that makes the whole thing feel worth it.</p>
+        </div>
+        <div class="mt-8 grid sm:grid-cols-3 gap-4 max-w-2xl">
+          <div class="rounded-2xl bg-cream-50 border border-ink-900/5 p-5">
+            <p class="font-display text-3xl text-blush-700">8 yrs</p>
+            <p class="text-sm text-ink-700/80 mt-1">Cake artistry</p>
+          </div>
+          <div class="rounded-2xl bg-cream-50 border border-ink-900/5 p-5">
+            <p class="font-display text-3xl text-mint-700">100s</p>
+            <p class="text-sm text-ink-700/80 mt-1">Celebrations made sweeter</p>
+          </div>
+          <div class="rounded-2xl bg-cream-50 border border-ink-900/5 p-5">
+            <p class="font-display text-3xl text-peach-700">1 of 1</p>
+            <p class="text-sm text-ink-700/80 mt-1">Design per cake</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery" class="relative py-24 lg:py-28">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <div class="max-w-2xl">
+        <span class="eyebrow">A peek inside the kitchen</span>
+        <h2 class="font-display mt-4 text-4xl sm:text-5xl leading-[1.05]">
+          Every cake is a <span class="italic font-medium">little masterpiece.</span>
+        </h2>
+      </div>
+      <a href="https://www.instagram.com/polkadotcakes" target="_blank" rel="noopener" class="btn btn-ghost">
+        See more on Instagram
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>
+      </a>
+    </div>
+
+    <div class="mt-12 grid grid-cols-12 gap-5">
+      <div class="col-span-12 md:col-span-7 row-span-2">
+        <div class="img-fancy img-treat overflow-hidden aspect-[4/3] bg-cream-200">
+          <img src="Assets/c22c23_3a7223661aa547a0bfecaa6511eb5c95~mv2_d_4008_1466_s_2.avif" alt="White cake topped with fresh roses and seasonal florals on a marble surface" class="w-full h-full object-cover" />
+        </div>
+      </div>
+      <div class="col-span-6 md:col-span-5">
+        <div class="img-fancy img-treat overflow-hidden aspect-[4/3] bg-cream-200">
+          <img src="Assets/515741800_18193880764311882_6190068037213817522_n.jpg" alt="Honey-bee themed gender reveal cake with matching cupcakes in a gift box" class="w-full h-full object-cover" />
+        </div>
+      </div>
+      <div class="col-span-6 md:col-span-5">
+        <div class="img-fancy img-treat overflow-hidden aspect-[4/3] bg-cream-200">
+          <img src="Assets/515080792_18194000389311882_3210546686182011155_n.jpg" alt="Cars-themed letter A birthday cake with red, black and white finishes" class="w-full h-full object-cover" />
+        </div>
+      </div>
+      <div class="col-span-6 md:col-span-4">
+        <div class="img-fancy img-treat overflow-hidden aspect-square bg-cream-200">
+          <img src="Assets/da8dd0_c84384b5667d46ba98ac803da9b8233f~mv2.avif" alt="White cake decorated with cascading pink roses and bright yellow flowers" class="w-full h-full object-cover" />
+        </div>
+      </div>
+      <div class="col-span-6 md:col-span-4">
+        <div class="img-fancy img-treat overflow-hidden aspect-square bg-cream-200">
+          <img src="Assets/c22c23_07d3ce801cc54a93925aeb87a19ff508~mv2_d_5121_3414_s_4_2.avif" alt="Slice of layered white cake on a plate with a gold fork" class="w-full h-full object-cover" />
+        </div>
+      </div>
+      <div class="col-span-12 md:col-span-4">
+        <div class="img-fancy img-treat overflow-hidden aspect-square bg-cream-200">
+          <img src="Assets/c22c23_b69c308ac4a348b5ac238dd963409418~mv2_d_2004_2148_s_2.avif" alt="Three-tier wedding cake with fresh roses and eucalyptus" class="w-full h-full object-cover" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quality / Excellence quote -->
+<section class="relative py-20 lg:py-24 bg-ink-900 text-cream-50 overflow-hidden">
+  <div class="absolute inset-0 polka-dense opacity-20 pointer-events-none"></div>
+  <div class="max-w-4xl mx-auto px-6 text-center relative">
+    <svg width="42" height="36" viewBox="0 0 42 36" class="mx-auto" fill="#F4A6BC" aria-hidden="true">
+      <path d="M9 0C4 0 0 4 0 9v18h18V9H9c0-1.7 1.3-3 3-3V0H9zm24 0c-5 0-9 4-9 9v18h18V9h-9c0-1.7 1.3-3 3-3V0h-3z"/>
+    </svg>
+    <blockquote class="mt-6 font-display text-3xl sm:text-4xl leading-[1.18] italic">
+      Each cake is a masterpiece, crafted with love and a touch of artistry that sets us apart. We don't just bake desserts. We make centrepieces for the moments you'll remember.
+    </blockquote>
+    <p class="script text-2xl text-blush-200 mt-6">- Dot, founder of PolkaDot Cakes</p>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="relative py-24 lg:py-28 bg-cream-100">
+  <div class="absolute inset-0 polka opacity-50 pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto px-6 relative">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
+      <div class="lg:col-span-5">
+        <span class="eyebrow">Let's start your cake</span>
+        <h2 class="font-display mt-4 text-4xl sm:text-5xl leading-[1.05]">
+          Tell me about your <span class="italic font-medium">celebration.</span>
+        </h2>
+        <p class="mt-5 text-lg text-ink-700/90 max-w-md">
+          Visits are by appointment only. Send a message with your date, theme and approximate guest count and I'll get back to you with a quote.
+        </p>
+
+        <div class="mt-9 space-y-4">
+          <a href="tel:0410579085" class="flex items-start gap-4 p-5 rounded-2xl bg-cream-50 border border-ink-900/5 hover:border-blush-200 hover:shadow-soft transition-[transform,box-shadow,border-color] duration-200 group">
+            <div class="w-11 h-11 rounded-xl bg-blush-100 flex items-center justify-center flex-shrink-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B0577A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-widest text-ink-700/70">Call or text</p>
+              <p class="text-lg font-semibold text-ink-900 mt-1">0410 579 085</p>
+            </div>
+          </a>
+
+          <a href="mailto:polkadotcakes@hotmail.com" class="flex items-start gap-4 p-5 rounded-2xl bg-cream-50 border border-ink-900/5 hover:border-mint-300 hover:shadow-soft transition-[transform,box-shadow,border-color] duration-200">
+            <div class="w-11 h-11 rounded-xl bg-mint-100 flex items-center justify-center flex-shrink-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2F8C85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-widest text-ink-700/70">Email</p>
+              <p class="text-lg font-semibold text-ink-900 mt-1 break-all">polkadotcakes@hotmail.com</p>
+            </div>
+          </a>
+
+          <div class="flex items-start gap-4 p-5 rounded-2xl bg-cream-50 border border-ink-900/5">
+            <div class="w-11 h-11 rounded-xl bg-peach-100 flex items-center justify-center flex-shrink-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C77A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-widest text-ink-700/70">Studio (by appointment)</p>
+              <p class="text-lg font-semibold text-ink-900 mt-1">The Grange, Lucknow VIC 3875</p>
+              <p class="text-sm text-ink-700/80 mt-1">Just outside Bairnsdale, East Gippsland</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-7 flex items-center gap-3">
+          <a href="https://www.facebook.com/PolkaDotCakesGippsland/" target="_blank" rel="noopener" aria-label="PolkaDot Cakes on Facebook" class="w-11 h-11 rounded-full bg-cream-50 border border-ink-900/8 flex items-center justify-center hover:bg-blush-100 hover:border-blush-200 transition-[background-color,border-color,transform] duration-200 hover:-translate-y-0.5">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#1F1B2C"><path d="M22 12a10 10 0 10-11.6 9.9V14.9H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/polkadotcakes" target="_blank" rel="noopener" aria-label="PolkaDot Cakes on Instagram" class="w-11 h-11 rounded-full bg-cream-50 border border-ink-900/8 flex items-center justify-center hover:bg-blush-100 hover:border-blush-200 transition-[background-color,border-color,transform] duration-200 hover:-translate-y-0.5">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F1B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7">
+        <form class="bg-cream-50 rounded-3xl p-7 sm:p-9 border border-ink-900/5 shadow-soft" onsubmit="event.preventDefault(); alert('Thanks - this is a mockup form.');">
+          <div class="grid sm:grid-cols-2 gap-5">
+            <label class="block">
+              <span class="text-sm font-semibold text-ink-900">Your name</span>
+              <input type="text" required class="mt-2 w-full rounded-xl border border-ink-900/10 bg-white/70 px-4 py-3 text-ink-900 placeholder:text-ink-700/50 focus:outline-none focus:border-blush-400 focus:ring-4 focus:ring-blush-100 transition-[border-color,box-shadow] duration-200" placeholder="Jane Smith" />
+            </label>
+            <label class="block">
+              <span class="text-sm font-semibold text-ink-900">Phone</span>
+              <input type="tel" class="mt-2 w-full rounded-xl border border-ink-900/10 bg-white/70 px-4 py-3 text-ink-900 placeholder:text-ink-700/50 focus:outline-none focus:border-blush-400 focus:ring-4 focus:ring-blush-100 transition-[border-color,box-shadow] duration-200" placeholder="04XX XXX XXX" />
+            </label>
+            <label class="block sm:col-span-2">
+              <span class="text-sm font-semibold text-ink-900">Email</span>
+              <input type="email" required class="mt-2 w-full rounded-xl border border-ink-900/10 bg-white/70 px-4 py-3 text-ink-900 placeholder:text-ink-700/50 focus:outline-none focus:border-blush-400 focus:ring-4 focus:ring-blush-100 transition-[border-color,box-shadow] duration-200" placeholder="you@email.com" />
+            </label>
+            <label class="block">
+              <span class="text-sm font-semibold text-ink-900">Occasion</span>
+              <select class="mt-2 w-full rounded-xl border border-ink-900/10 bg-white/70 px-4 py-3 text-ink-900 focus:outline-none focus:border-blush-400 focus:ring-4 focus:ring-blush-100 transition-[border-color,box-shadow] duration-200">
+                <option>Birthday / milestone</option>
+                <option>Wedding</option>
+                <option>Corporate / event</option>
+                <option>Cookies / favours</option>
+                <option>Grazing gift box</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label class="block">
+              <span class="text-sm font-semibold text-ink-900">Date needed</span>
+              <input type="date" class="mt-2 w-full rounded-xl border border-ink-900/10 bg-white/70 px-4 py-3 text-ink-900 focus:outline-none focus:border-blush-400 focus:ring-4 focus:ring-blush-100 transition-[border-color,box-shadow] duration-200" />
+            </label>
+            <label class="block sm:col-span-2">
+              <span class="text-sm font-semibold text-ink-900">Tell me about your cake</span>
+              <textarea rows="4" class="mt-2 w-full rounded-xl border border-ink-900/10 bg-white/70 px-4 py-3 text-ink-900 placeholder:text-ink-700/50 focus:outline-none focus:border-blush-400 focus:ring-4 focus:ring-blush-100 transition-[border-color,box-shadow] duration-200" placeholder="Theme, colours, flavours, guest count, anything you've got..."></textarea>
+            </label>
+          </div>
+          <div class="mt-6 flex items-center justify-between gap-4 flex-wrap">
+            <p class="text-sm text-ink-700/70">I'll reply within 1-2 business days.</p>
+            <button type="submit" class="btn btn-primary">Send enquiry <span aria-hidden="true">-&gt;</span></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-white text-ink-700 pt-16 pb-8 border-t border-ink-900/8">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-5">
+        <img src="Assets/logo.avif" alt="PolkaDot Cakes" class="h-12 w-auto" />
+        <p class="mt-5 max-w-md text-ink-700/85">
+          Hand-crafted custom cakes, cupcakes, cookies and grazing boxes. Bairnsdale born, serving across East Gippsland.
+        </p>
+        <div class="mt-5 flex items-center gap-3">
+          <a href="https://www.facebook.com/PolkaDotCakesGippsland/" target="_blank" rel="noopener" aria-label="Facebook" class="w-10 h-10 rounded-full border border-ink-900/10 flex items-center justify-center text-ink-900 hover:bg-blush-100 hover:border-blush-200 transition-[background-color,border-color,transform] duration-200 hover:-translate-y-0.5">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9V14.9H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/polkadotcakes" target="_blank" rel="noopener" aria-label="Instagram" class="w-10 h-10 rounded-full border border-ink-900/10 flex items-center justify-center text-ink-900 hover:bg-blush-100 hover:border-blush-200 transition-[background-color,border-color,transform] duration-200 hover:-translate-y-0.5">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="md:col-span-3">
+        <p class="font-display text-ink-900 text-lg">Explore</p>
+        <ul class="mt-4 space-y-2.5">
+          <li><a href="#services" class="hover:text-blush-700 transition-colors duration-200">Services</a></li>
+          <li><a href="#gallery" class="hover:text-blush-700 transition-colors duration-200">Gallery</a></li>
+          <li><a href="#about" class="hover:text-blush-700 transition-colors duration-200">About</a></li>
+          <li><a href="#contact" class="hover:text-blush-700 transition-colors duration-200">Contact</a></li>
+        </ul>
+      </div>
+      <div class="md:col-span-4">
+        <p class="font-display text-ink-900 text-lg">Get in touch</p>
+        <ul class="mt-4 space-y-2.5">
+          <li><a href="tel:0410579085" class="hover:text-blush-700 transition-colors duration-200">0410 579 085</a></li>
+          <li><a href="mailto:polkadotcakes@hotmail.com" class="hover:text-blush-700 transition-colors duration-200 break-all">polkadotcakes@hotmail.com</a></li>
+          <li>The Grange, Lucknow VIC 3875</li>
+          <li class="text-ink-700/65 text-sm">By appointment only</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-12 pt-6 border-t border-ink-900/10 flex flex-wrap items-center justify-between gap-4 text-sm text-ink-700/65">
+      <p>&copy; <span id="yr"></span> PolkaDot Cakes. All rights reserved.</p>
+      <p>Site by <a href="https://suterasites.com.au" target="_blank" rel="noopener" class="hover:text-blush-700 transition-colors duration-200">Sutera Sites</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Hide navbar on scroll down, show on scroll up
+  (function () {
+    const nav = document.querySelector('header.nav-glass');
+    if (!nav) return;
+    let lastY = window.scrollY;
+    let ticking = false;
+    const THRESHOLD = 6;       // ignore tiny jitters
+    const REVEAL_AT_TOP = 80;  // always show near the top
+
+    function onScroll() {
+      const y = window.scrollY;
+      if (Math.abs(y - lastY) < THRESHOLD) { ticking = false; return; }
+      if (y < REVEAL_AT_TOP) {
+        nav.classList.remove('nav-hidden');
+      } else if (y > lastY) {
+        // scrolling down
+        nav.classList.add('nav-hidden');
+      } else {
+        // scrolling up
+        nav.classList.remove('nav-hidden');
+      }
+      lastY = y;
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(onScroll);
+        ticking = true;
+      }
+    }, { passive: true });
+  })();
+</script>
+</body>
+</html>
