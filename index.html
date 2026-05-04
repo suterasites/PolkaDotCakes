@@ -98,7 +98,19 @@
   .img-treat::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(31, 27, 44, 0.22) 100%); pointer-events: none; }
 
   /* Underline accent */
-  .ul-script { background-image: linear-gradient(180deg, transparent 62%, rgba(244, 165, 112, 0.45) 62%, rgba(244, 165, 112, 0.45) 92%, transparent 92%); padding: 0 0.1em; }
+  .ul-script { background-image: linear-gradient(180deg, transparent 68%, rgba(244, 165, 112, 0.45) 68%, rgba(244, 165, 112, 0.45) 90%, transparent 90%); padding: 0 0.04em; }
+
+  /* Mobile drawer */
+  .m-link { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; padding: 0.95rem 1rem; border-radius: 12px; font-weight: 600; color: #1F1B2C; font-size: 1.05rem; transition: background-color 200ms ease; }
+  .m-link:hover, .m-link:focus-visible { background: #FBF7F1; outline: none; }
+  details[open] > summary .m-caret { transform: rotate(180deg); }
+  .m-caret { transition: transform 220ms cubic-bezier(.22,1.2,.36,1); color: rgba(31, 27, 44, 0.55); }
+  .m-sublink { display: flex; align-items: center; gap: 0.7rem; padding: 0.7rem 0.85rem; border-radius: 10px; color: #3B3346; font-weight: 500; font-size: 0.98rem; transition: background-color 200ms ease, color 200ms ease; }
+  .m-sublink:hover, .m-sublink:focus-visible { background: #FBF7F1; color: #1F1B2C; outline: none; }
+  .m-dot { width: 8px; height: 8px; border-radius: 999px; flex-shrink: 0; }
+  .menu-open #menuBackdrop { opacity: 1; }
+  .menu-open #menuPanel { transform: translateX(0); }
+  .menu-open { overflow: hidden; }
 
   /* Nav link */
   .nav-link { position: relative; font-weight: 500; color: #3B3346; padding: 0.4rem 0.1rem; transition: color 200ms ease; }
@@ -279,25 +291,77 @@
       <a href="#contact" class="nav-link">Contact</a>
     </nav>
 
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2 sm:gap-3">
       <a href="tel:0410579085" class="hidden md:inline-flex btn btn-ghost">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         0410 579 085
       </a>
+      <!-- Mobile tap-to-call (icon only) -->
+      <a href="tel:0410579085" aria-label="Call PolkaDot Cakes" class="md:hidden w-11 h-11 rounded-full bg-cream-100 border border-ink-900/10 flex items-center justify-center text-ink-900 hover:bg-blush-100 hover:border-blush-200 transition-[background-color,border-color,transform] duration-200 active:scale-95">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </a>
       <a href="#contact" class="btn btn-primary">Enquire <span aria-hidden="true">-&gt;</span></a>
+      <!-- Hamburger -->
+      <button id="menuOpen" type="button" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false" class="lg:hidden w-11 h-11 rounded-full bg-cream-100 border border-ink-900/10 flex items-center justify-center text-ink-900 hover:bg-blush-100 hover:border-blush-200 transition-[background-color,border-color,transform] duration-200 active:scale-95">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
     </div>
   </div>
 </header>
 
+<!-- Mobile menu drawer -->
+<div id="mobileMenu" class="lg:hidden fixed inset-0 z-[60] hidden" role="dialog" aria-modal="true" aria-labelledby="mobileMenuTitle">
+  <div id="menuBackdrop" class="absolute inset-0 bg-ink-900/55 opacity-0 transition-opacity duration-300"></div>
+  <aside class="absolute top-0 right-0 h-full w-[88%] max-w-[400px] bg-white shadow-lift translate-x-full transition-transform duration-300 ease-out flex flex-col" id="menuPanel">
+    <div class="flex items-center justify-between px-5 py-4 border-b border-ink-900/8">
+      <span id="mobileMenuTitle" class="font-display text-lg text-ink-900">Menu</span>
+      <button id="menuClose" type="button" aria-label="Close menu" class="w-10 h-10 rounded-full bg-cream-100 flex items-center justify-center text-ink-900 hover:bg-blush-100 transition-colors duration-200">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <nav class="flex-1 overflow-y-auto px-3 py-4" aria-label="Mobile primary">
+      <details class="group" open>
+        <summary class="m-link list-none cursor-pointer">
+          <span>Services</span>
+          <svg class="m-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="px-2 pb-2 grid gap-1">
+          <a href="#services" class="m-sublink"><span class="m-dot bg-blush-400"></span>Custom Cakes</a>
+          <a href="#services" class="m-sublink"><span class="m-dot bg-mint-500"></span>Wedding Cakes</a>
+          <a href="#services" class="m-sublink"><span class="m-dot bg-peach-500"></span>Cupcakes</a>
+          <a href="#services" class="m-sublink"><span class="m-dot bg-blush-400"></span>Cookies</a>
+          <a href="#services" class="m-sublink"><span class="m-dot bg-mint-500"></span>Grazing Gift Boxes</a>
+          <a href="#services" class="m-sublink"><span class="m-dot bg-peach-500"></span>Corporate Solutions</a>
+        </div>
+      </details>
+      <a href="#gallery" class="m-link">Gallery</a>
+      <a href="#about" class="m-link">About</a>
+      <a href="#contact" class="m-link">Contact</a>
+    </nav>
+
+    <div class="border-t border-ink-900/8 p-5 space-y-3 bg-cream-50">
+      <a href="#contact" class="btn btn-primary w-full justify-center">Enquire <span aria-hidden="true">-&gt;</span></a>
+      <a href="tel:0410579085" class="btn btn-ghost w-full justify-center">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        0410 579 085
+      </a>
+      <p class="text-xs text-ink-700/70 text-center pt-1">By appointment - The Grange, Lucknow VIC 3875</p>
+    </div>
+  </aside>
+</div>
+
 <!-- Hero -->
 <section class="relative hero-bg grain overflow-hidden">
-  <!-- decorative dots -->
-  <span class="deco-dot" style="top:14%; left:6%; width:14px; height:14px; background:#F4A6BC; opacity:.65"></span>
-  <span class="deco-dot" style="top:24%; left:18%; width:8px; height:8px; background:#5DC9C1; opacity:.7"></span>
-  <span class="deco-dot" style="top:62%; left:9%; width:10px; height:10px; background:#F4A570; opacity:.65"></span>
-  <span class="deco-dot" style="top:78%; left:22%; width:6px; height:6px; background:#F4A6BC; opacity:.8"></span>
-  <span class="deco-dot" style="top:18%; right:6%; width:12px; height:12px; background:#5DC9C1; opacity:.55"></span>
-  <span class="deco-dot" style="top:72%; right:14%; width:9px; height:9px; background:#F4A570; opacity:.7"></span>
+  <!-- decorative dots (desktop only) -->
+  <div class="hidden md:block" aria-hidden="true">
+    <span class="deco-dot" style="top:14%; left:6%; width:14px; height:14px; background:#F4A6BC; opacity:.65"></span>
+    <span class="deco-dot" style="top:24%; left:18%; width:8px; height:8px; background:#5DC9C1; opacity:.7"></span>
+    <span class="deco-dot" style="top:62%; left:9%; width:10px; height:10px; background:#F4A570; opacity:.65"></span>
+    <span class="deco-dot" style="top:78%; left:22%; width:6px; height:6px; background:#F4A6BC; opacity:.8"></span>
+    <span class="deco-dot" style="top:18%; right:6%; width:12px; height:12px; background:#5DC9C1; opacity:.55"></span>
+    <span class="deco-dot" style="top:72%; right:14%; width:9px; height:9px; background:#F4A570; opacity:.7"></span>
+  </div>
 
   <div class="max-w-7xl mx-auto px-6 pt-14 pb-24 lg:pt-20 lg:pb-28 relative">
     <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
@@ -333,13 +397,13 @@
           <div class="hidden md:block absolute -left-10 bottom-6 w-44 h-44 img-fancy img-tilt-l overflow-hidden ring-4 ring-cream-50">
             <img src="Assets/da8dd0_c84384b5667d46ba98ac803da9b8233f~mv2.avif" alt="White cake decorated with cascading pink roses and yellow flowers" class="w-full h-full object-cover" />
           </div>
-          <!-- floating tag: 8 yrs -->
-          <div class="float-tag" style="top: -14px; left: -18px;">
+          <!-- floating tag: 8 yrs (desktop only) -->
+          <div class="float-tag hidden sm:inline-flex" style="top: -14px; left: -18px;">
             <span class="w-2.5 h-2.5 rounded-full bg-blush-400"></span>
             8 years of cake artistry
           </div>
-          <!-- floating tag: by appointment -->
-          <div class="float-tag" style="bottom: -12px; right: -10px;">
+          <!-- floating tag: by appointment (desktop only) -->
+          <div class="float-tag hidden sm:inline-flex" style="bottom: -12px; right: -10px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5DC9C1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             By appointment
           </div>
@@ -761,6 +825,37 @@
         ticking = true;
       }
     }, { passive: true });
+  })();
+
+  // Mobile menu drawer
+  (function () {
+    const menu = document.getElementById('mobileMenu');
+    const openBtn = document.getElementById('menuOpen');
+    const closeBtn = document.getElementById('menuClose');
+    const backdrop = document.getElementById('menuBackdrop');
+    if (!menu || !openBtn || !closeBtn) return;
+
+    function open() {
+      menu.classList.remove('hidden');
+      // next frame so the transition runs
+      requestAnimationFrame(() => document.body.classList.add('menu-open'));
+      openBtn.setAttribute('aria-expanded', 'true');
+    }
+    function close() {
+      document.body.classList.remove('menu-open');
+      openBtn.setAttribute('aria-expanded', 'false');
+      // wait for transition to finish before hiding
+      setTimeout(() => menu.classList.add('hidden'), 320);
+    }
+
+    openBtn.addEventListener('click', open);
+    closeBtn.addEventListener('click', close);
+    backdrop.addEventListener('click', close);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && document.body.classList.contains('menu-open')) close();
+    });
+    // close on link tap (so anchor scroll happens after drawer collapses)
+    menu.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', close));
   })();
 </script>
 </body>
